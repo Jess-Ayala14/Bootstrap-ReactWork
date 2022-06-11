@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "bootstrapreact",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authbootstrapreact491165cb",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

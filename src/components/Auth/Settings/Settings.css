@@ -1,0 +1,88 @@
+div.settings {
+    height: 100vh;
+    background-color: azure;
+}
+
+
+
+.settings .nav-item a.nav-link {
+    color: #0d6efd;
+    background-color: white;
+    border-radius: 3px;
+    border-color: #0d6efd;
+    border-style: ridge;
+
+}
+
+.settings .nav-item a.nav-link.active {
+    color: white;
+    background-color: #5f9af1;
+
+}
+
+.settings-col-tab .settings-content {
+    height: auto;
+    background-color: #f6f8faef;
+    border-radius: 5px;
+    border-color: #85b2f5;
+    border-style: ridge;
+}
+
+.settings-col-tab .settings-content 
+                  .profile-list,.socialn-list,.bussiness-list {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.settings-col-tab .settings-content .profile-list input{
+    text-transform: capitalize;
+}
+
+.settings-col-tab .settings-content p{
+    text-transform: capitalize;
+    margin: auto;
+}
+
+.settings .nav-pills .nav-link {
+    border: 1px;
+    margin: 2px;
+}
+
+.settings .settings-content img {
+    height: 75px;
+    width: auto;
+}
+
+.settings .settings-content .btn-primary {
+    margin-top: 5px;
+}
+
+.settings .settings-col-tab .lightbox {
+    display:flex;
+    transition: 0.3s all;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.settings .settings-col-tab .hide-lightbox {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+div,a.text-left{
+   text-align: left; 
+}
+
+div,a.text-center{
+    text-align: center; 
+ }
+ 
+ div,a.text-right{
+    text-align: right; 
+ }
+ 
+ div,a.text-justify {
+    text-align: justify;
+}

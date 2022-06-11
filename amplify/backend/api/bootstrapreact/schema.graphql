@@ -1,0 +1,7 @@
+type Business @model @auth(rules: [{ allow: owner, operations: [create, read, update, delete] }]) {
+  id: ID!
+  name: String!
+  about: String
+  user_Id: String
+  image: String
+}
