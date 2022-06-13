@@ -1,15 +1,15 @@
 {
-  "staging": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-bootstrapreact-staging-210500-authRole",
-      "UnauthRoleArn": "arn:aws:iam::540962983802:role/amplify-bootstrapreact-staging-210500-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::540962983802:role/amplify-bootstrapreact-staging-210500-authRole",
+      "AuthRoleName": "amplify-bootstrapreact-dev-225637-authRole",
+      "UnauthRoleArn": "arn:aws:iam::540962983802:role/amplify-bootstrapreact-dev-225637-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::540962983802:role/amplify-bootstrapreact-dev-225637-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-bootstrapreact-staging-210500-deployment",
-      "UnauthRoleName": "amplify-bootstrapreact-staging-210500-unauthRole",
-      "StackName": "amplify-bootstrapreact-staging-210500",
-      "StackId": "arn:aws:cloudformation:us-east-1:540962983802:stack/amplify-bootstrapreact-staging-210500/28298cc0-e9ca-11ec-8f1b-0a055b1cb129",
-      "AmplifyAppId": "dhv7z94suyfct"
+      "DeploymentBucketName": "amplify-bootstrapreact-dev-225637-deployment",
+      "UnauthRoleName": "amplify-bootstrapreact-dev-225637-unauthRole",
+      "StackName": "amplify-bootstrapreact-dev-225637",
+      "StackId": "arn:aws:cloudformation:us-east-1:540962983802:stack/amplify-bootstrapreact-dev-225637/bfddc540-e9d9-11ec-a3c2-1203f3b6522d",
+      "AmplifyAppId": "d3f1kz31c1z09d"
     },
     "categories": {
       "auth": {
@@ -17,7 +17,7 @@
       },
       "function": {
         "S3Trigger651ff5bf": {
-          "deploymentBucketName": "amplify-bootstrapreact-staging-210500-deployment",
+          "deploymentBucketName": "amplify-bootstrapreact-dev-225637-deployment",
           "s3Key": "amplify-builds/S3Trigger651ff5bf-62664b544a674e684173-build.zip"
         }
       }

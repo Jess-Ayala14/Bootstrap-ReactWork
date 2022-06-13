@@ -12,7 +12,6 @@ const Profile = () => {
     const [name, setName] = useState("");
     const [lastname, setName1] = useState("");
     let [state, setState] = useState(null)
-    const address = undefined;
 
     useEffect(() => {
         (async () => {
@@ -26,15 +25,13 @@ const Profile = () => {
         })()
     }, [])
 
-    
     const format = (variable) => {
-        var data = address || variable
+        var data = variable
         data = data.split('"');
         data = data[1]
         return (data)
     }
 
-    
     async function handleSubmit (event) {
          
                 event.preventDefault();
