@@ -1,0 +1,7 @@
+.navbar-item {
+    text-transform: capitalize;
+}
+
+Nav .me-auto .my-2 .my-lg-2 {
+    max-height: 100px;
+}

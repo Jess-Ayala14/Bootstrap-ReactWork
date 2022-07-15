@@ -32,21 +32,30 @@ const Profile = () => {
         return (data)
     }
 
-    async function handleSubmit (event) {
-         
-                event.preventDefault();
-                let user = await Auth.currentAuthenticatedUser();
+    async function handleSubmit(event) {
 
-                let result = await Auth.updateUserAttributes(user, {
-                    'given_name': name,
-                    'family_name': lastname
-                });
-                
-                console.log(result);
-            
+        event.preventDefault();
+        let user = await Auth.currentAuthenticatedUser();
+
+        let result = await Auth.updateUserAttributes(user, {
+            'given_name': name,
+            'family_name': lastname
+        });
+
+        console.log(result);
+
     }
 
+    async function values(e) {
+        const user_name = JSON.stringify(state["username"]);
+
+        //console.log(user_name);
+    }
+
+
+
     if (!state) return <AmplifyLoadingSpinner />
+
     return (
         <Tab.Pane eventKey="User">
             <Container>
@@ -54,23 +63,39 @@ const Profile = () => {
                     <ListGroup>
                         <ListGroup.Item>
                             <Form onSubmit={handleSubmit}>
-                                <div>
-                                    <Row className="justify-content-md-center">
-                                        <Col md="3 text-left"><b>Username</b> <p>{format(JSON.stringify(state["username"]))}</p></Col>
-                                        <Col md="6 text-center"><b>Given Name</b>
-                                                                <p>{format(JSON.stringify(state["attributes"]["given_name"]))}{" "}
-                                                                   {format(JSON.stringify(state["attributes"]["family_name"]))} 
-                                                                </p></Col>
-                                        <Col md="2 text-right"><a href="#User" onClick={() => setHideLightbox(false)}>Edit</a></Col>
-                                    </Row>
-                                </div>
+                                <Row className="justify-content-md-center">
+                                    <Col md="3 text-left"><b>Username</b> <p>{format(JSON.stringify(state["username"]))}</p></Col>
+                                    <Col md="6 text-center"><b>Given Name</b>
+                                        <p>{(JSON.stringify(state["attributes"]["given_name"])) ?
+                                            format(JSON.stringify(state["attributes"]["given_name"]))
+                                            :
+                                            ""
+                                        }
+                                            {" "}
+                                            {(JSON.stringify(state["attributes"]["family_name"])) ?
+                                                format(JSON.stringify(state["attributes"]["family_name"]))
+                                                :
+                                                ""
+                                            }
+                                        </p>
+                                    </Col>
+                                    <Col md="2 text-right"><a href="#User" onClick={() => setHideLightbox(false)}>Edit</a></Col>
+                                </Row>
                                 <div className={`${hideLightbox ? "hide-lightbox" : "ligthbox"}`}>
                                     <Row className="justify-content-md-center username-edit">
                                         <Col md="6 text-left">
                                             <Form.Label><h5>Edit Name</h5></Form.Label>
-                                            <Form.Control type="text" value={name} name="name" id="name" placeholder={"current: " + format(JSON.stringify(state["attributes"]["given_name"]))} defaultValue="" onChange={(e) => setName(e.target.value)} />
+                                            <Form.Control type="text" value={name} name="name" id="name" placeholder={(JSON.stringify(state["attributes"]["given_name"])) ?
+                                                                                                                        "current: " + format(JSON.stringify(state["attributes"]["given_name"])):
+                                                                                                                        "Undefined"
+                                                                                                                    } 
+                                                                      defaultValue="" onChange={(e) => setName(e.target.value)} />
                                             <br />
-                                            <Form.Control type="text" value={lastname} name="lastname" id="lastname" placeholder={"current: " + format(JSON.stringify(state["attributes"]["family_name"]))} defaultValue="" onChange={(e) => setName1(e.target.value)} />
+                                            <Form.Control type="text" value={lastname} name="lastname" id="lastname" placeholder={(JSON.stringify(state["attributes"]["given_name"])) ?
+                                                                                                                                    "current: " + format(JSON.stringify(state["attributes"]["family_name"])):
+                                                                                                                                    "Undefined"
+                                                                                                                                } 
+                                                                      defaultValue="" onChange={(e) => setName1(e.target.value)} />
                                             <br />
                                             <Button variant="light" type="submit">Submit</Button>
                                             <Button variant="dark" onClick={() => setHideLightbox(true)}>Close</Button>{' '}
@@ -81,13 +106,11 @@ const Profile = () => {
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Form>
-                                <div>
-                                    <Row className="justify-content-md-center">
-                                        <Col md="3 text-left">Email</Col>
-                                        <Col md="6 text-center">{format(JSON.stringify(state["attributes"]["email"]))}</Col>
-                                        <Col md="2 text-right"><a href="#User" onClick={() => setHideLightbox1(false)}>Edit</a></Col>
-                                    </Row>
-                                </div>
+                                <Row className="justify-content-md-center">
+                                    <Col md="3 text-left">Email</Col>
+                                    <Col md="6 text-center">{format(JSON.stringify(state["attributes"]["email"]))}</Col>
+                                    <Col md="2 text-right"><a href="#User" onClick={() => setHideLightbox1(false)}>Edit</a></Col>
+                                </Row>
                                 <div className={`${hideLightbox1 ? "hide-lightbox" : "ligthbox"}`}>
                                     <Row className="justify-content-md-center username-edit">
                                         <Col md="6 text-left">

@@ -2,6 +2,9 @@ type Business @model @auth(rules: [{ allow: owner, operations: [create, read, up
   id: ID!
   name: String!
   about: String
+  phone: String
+  address: String
   user_Id: String
   image: String
+  facebook_API: String
 }

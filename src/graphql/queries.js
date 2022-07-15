@@ -7,8 +7,11 @@ export const getBusiness = /* GraphQL */ `
       id
       name
       about
+      phone
+      address
       user_Id
       image
+      facebook_API
       createdAt
       updatedAt
       owner
@@ -26,8 +29,11 @@ export const listBusinesses = /* GraphQL */ `
         id
         name
         about
+        phone
+        address
         user_Id
         image
+        facebook_API
         createdAt
         updatedAt
         owner

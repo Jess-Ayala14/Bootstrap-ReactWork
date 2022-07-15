@@ -10,8 +10,11 @@ export const createBusiness = /* GraphQL */ `
       id
       name
       about
+      phone
+      address
       user_Id
       image
+      facebook_API
       createdAt
       updatedAt
       owner
@@ -27,8 +30,11 @@ export const updateBusiness = /* GraphQL */ `
       id
       name
       about
+      phone
+      address
       user_Id
       image
+      facebook_API
       createdAt
       updatedAt
       owner
@@ -44,8 +50,11 @@ export const deleteBusiness = /* GraphQL */ `
       id
       name
       about
+      phone
+      address
       user_Id
       image
+      facebook_API
       createdAt
       updatedAt
       owner

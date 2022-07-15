@@ -1,5 +1,5 @@
 {
-  "AppSyncApiName": "bootstrapreact",
+  "AppSyncApiName": "bootstrapreactwork",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {

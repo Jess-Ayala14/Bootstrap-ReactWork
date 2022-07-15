@@ -29,9 +29,17 @@ div.settings {
 }
 
 .settings-col-tab .settings-content 
-                  .profile-list,.socialn-list,.bussiness-list {
+                  .profile-list,.socialn-list,.business-list {
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+.settings-col-tab .settings-content .business-list h6,p{
+    display: inline;
+}
+
+.settings-col-tab .settings-content .business-list .form-label{
+    text-align: center;
 }
 
 .settings-col-tab .settings-content .profile-list input{
