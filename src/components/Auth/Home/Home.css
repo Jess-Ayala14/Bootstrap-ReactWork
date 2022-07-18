@@ -20,7 +20,17 @@ div.Home .card-body, .card-title, .card-subtitle{
 }
 
 div.Home .card-title{
-    font-size: 18px;
+    font-size: 20px;
+}
+
+div.Home .card-body h4,p{
+    text-align: center;
+    text-transform: none;
+}
+
+
+div.Home .card-body .fade.tab-pane{
+    display: flex;
 }
 
 div.Home img, div.Business img{

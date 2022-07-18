@@ -10,7 +10,7 @@ import './Home.css';
 import { listBusinesses } from '../../../graphql/queries';
 import { createBusiness as createBusinessMutation }
     from '../../../graphql/mutations';
-import img_profile from '../../../storage/generic-profile.jpg'
+//import img_profile from '../../../storage/generic-profile.jpg'
 
 
 const initialFormState = { name: '', about: '' }
@@ -23,6 +23,7 @@ const Home = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    //const DbTable = this.state.DbTable;
 
 
     useEffect(() => {
@@ -37,12 +38,14 @@ const Home = () => {
         })()
 
         fetchBusiness()
+
     }, [])
 
     const format = (variable) => {
         var data = variable
         data = data.split('"')
         data = data[1]
+        data = data.charAt(0).toUpperCase() + data.slice(1);
         return (data)
     }
 
@@ -86,16 +89,21 @@ const Home = () => {
     const onImageChange = (e) => {
         const [file] = e.target.files;
         setImg(URL.createObjectURL(file));
-    };
+    }
 
+    const Table = () =>{
+        if (business.map(business => business.id) != "")
+           return true
+        else
+           return false
+    }
 
     if (!state) return <AmplifyLoadingSpinner />
 
-
     return (
         <div className='Home' >
-            <Container>
-                {business.map(business => business.id) != "" ?
+            {Table() ?
+                <Container>
                     <div>
                         <br />
                         <Row>
@@ -112,11 +120,7 @@ const Home = () => {
                                     ))}
                                 </Card>
                             </Col>
-                            <Col xs="5" lg="7">
-                                <p>Hello {format(JSON.stringify(state["username"]))}</p>
-                                <br />
-                                <>This is your email:  {format(JSON.stringify(state["attributes"]["email"]))}</>
-                            </Col>
+                            <Col xs="5" lg="7" /> 
                             <Col xs="3" lg="3">
                                 <Button variant="primary" onClick={handleShow}>
                                     New Post
@@ -151,40 +155,44 @@ const Home = () => {
                             </Tab.Container>
                         </Row>
                     </div>
-                    :
+                </Container>
+                :
+                <Container>
                     <div>
                         <br />
                         <Row>
-                            <Col sm={3}>
-                                <Card>
-                                    <Card.Body className='center'>
-                                        <Card.Title className="center">{format(JSON.stringify(state["username"]))}</Card.Title>
-                                        <Card.Text>
-                                            <img src={img_profile} alt="profile" />
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
+                            <Col sm={3} />
                             <Col sm={7}>
                                 <Card>
                                     <Card.Header>
-                                        <Card.Title>Welcome</Card.Title>
+                                        <Card.Title>Welcome to Ali-Media Tools</Card.Title>
                                     </Card.Header>
                                     <Tab.Container defaultActiveKey="first">
                                         <Tab.Content>
-                                            <Card.Body>
-
-                                                <Tab.Pane eventKey="first">
+                                            <Tab.Pane eventKey="first">
+                                                <Card.Body>
                                                     <Row className="justify-content-md-center">
                                                         <Col md="6">
-                                                            <h1>Welcome</h1>
+                                                            <p>
+                                                                Hello {format(JSON.stringify(state["username"]))}, 
+                                                                welcome to Ali-Media-Tools. Thank you for accepting 
+                                                                to participate: you have been invited to probe this 
+                                                                functional prototype, which consists add multiple 
+                                                                fuctions of your favorites social media. On this site, 
+                                                                you could post and watch your history post from Facebook, 
+                                                                also Instagram, and Twitter at the same point.
+                                                            </p>
+                                                            <br />
+                                                            <h4>Please press next</h4>
                                                         </Col>
                                                     </Row>
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="second">
+                                                </Card.Body>
+                                            </Tab.Pane>
+                                            <Tab.Pane eventKey="second">
+                                                <Card.Body>
                                                     <Form>
                                                         <Row className="justify-content-md-center">
-                                                            <Col md="6 text-left">
+                                                            <Col md="6">
                                                                 <Form>
                                                                     <Form.Label><h4>Tell us About your Business:</h4></Form.Label>
                                                                     <Form.Control type="text" onChange={e => setFormData({ ...formData, 'name': e.target.value })}
@@ -200,25 +208,25 @@ const Home = () => {
                                                             </Col>
                                                         </Row>
                                                     </Form>
-                                                </Tab.Pane>
-                                                <br />
-                                            </Card.Body>
+                                                </Card.Body>
+                                            </Tab.Pane>
+                                            <br />
                                             <Card.Footer>
                                                 <Card.Text>
-                                                   
-                                                        <Nav className="justify-content-center">
-                                                            <Pagination.Item eventKey="first">
-                                                                <Nav.Item>
-                                                                    <Nav.Link eventKey="first">{"<"}</Nav.Link>
-                                                                </Nav.Item>
-                                                            </Pagination.Item>
-                                                            <Pagination.Item eventKey="second">
-                                                                <Nav.Item>
-                                                                    <Nav.Link eventKey="second">{">"}</Nav.Link>
-                                                                </Nav.Item>
-                                                            </Pagination.Item>
-                                                        </Nav>
-                                                   
+
+                                                    <Nav className="justify-content-center">
+                                                        <Pagination.Item eventKey="first">
+                                                            <Nav.Item>
+                                                                <Nav.Link eventKey="first">{"<"}</Nav.Link>
+                                                            </Nav.Item>
+                                                        </Pagination.Item>
+                                                        <Pagination.Item eventKey="second">
+                                                            <Nav.Item>
+                                                                <Nav.Link eventKey="second">{">"}</Nav.Link>
+                                                            </Nav.Item>
+                                                        </Pagination.Item>
+                                                    </Nav>
+
                                                 </Card.Text>
                                             </Card.Footer>
                                         </Tab.Content>
@@ -229,9 +237,9 @@ const Home = () => {
                             <Col sm={2} />
                         </Row>
                     </div>
+                </Container >
+            }
 
-                }
-            </Container >
             {/* Modal Form*/}
             <Modal show={show} onHide={handleClose}>
                 <div className='modal-post'>
@@ -265,7 +273,6 @@ const Home = () => {
         </div >
 
     )
-
 
 }
 
