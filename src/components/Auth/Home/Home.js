@@ -91,11 +91,11 @@ const Home = () => {
         setImg(URL.createObjectURL(file));
     }
 
-    const Table = () =>{
+    const Table = () => {
         if (business.map(business => business.id) != "")
-           return true
+            return true
         else
-           return false
+            return false
     }
 
     if (!state) return <AmplifyLoadingSpinner />
@@ -107,7 +107,7 @@ const Home = () => {
                     <div>
                         <br />
                         <Row>
-                            <Col xs="4" lg="2">
+                            <Col xs={5} md={3} lg={2}>
                                 <Card>
                                     {business.map(business => (
                                         <Card.Body>
@@ -120,8 +120,8 @@ const Home = () => {
                                     ))}
                                 </Card>
                             </Col>
-                            <Col xs="5" lg="7" /> 
-                            <Col xs="3" lg="3">
+                            <Col xs={4} md={6} lg={7} />
+                            <Col xs={3} md={3} lg={3}>
                                 <Button variant="primary" onClick={handleShow}>
                                     New Post
                                 </Button>
@@ -130,8 +130,7 @@ const Home = () => {
                         <br />
                         <Row>
                             <Tab.Container id="left-tabs-example" defaultActiveKey="files">
-                                <Row>
-                                    <Col sm={2}>
+                                    <Col sm={3} md={3} lg={2}>
                                         <Nav variant="pills" className="flex-column">
                                             <Nav.Item>
                                                 <Nav.Link eventKey="files">Files</Nav.Link>
@@ -144,14 +143,13 @@ const Home = () => {
                                             </Nav.Item>
                                         </Nav>
                                     </Col>
-                                    <Col className="Home-col-tab" sm={9}>
+                                    <Col className="Home-col-tab" sm={9} md={9} lg={8}>
                                         <Tab.Content>
                                             <Files />
                                             <Posted />
                                             <Drafts />
                                         </Tab.Content>
                                     </Col>
-                                </Row>
                             </Tab.Container>
                         </Row>
                     </div>
@@ -161,8 +159,8 @@ const Home = () => {
                     <div>
                         <br />
                         <Row>
-                            <Col sm={3} />
-                            <Col sm={7}>
+                            <Col sm={1} md={2} lg={3} />
+                            <Col sm={10} md={8} lg={6}>
                                 <Card>
                                     <Card.Header>
                                         <Card.Title>Welcome to Ali-Media Tools</Card.Title>
@@ -172,14 +170,14 @@ const Home = () => {
                                             <Tab.Pane eventKey="first">
                                                 <Card.Body>
                                                     <Row className="justify-content-md-center">
-                                                        <Col md="6">
+                                                        <Col md={10} sm={12} lg={8} >
                                                             <p>
-                                                                Hello {format(JSON.stringify(state["username"]))}, 
-                                                                welcome to Ali-Media-Tools. Thank you for accepting 
-                                                                to participate: you have been invited to probe this 
-                                                                functional prototype, which consists add multiple 
-                                                                fuctions of your favorites social media. On this site, 
-                                                                you could post and watch your history post from Facebook, 
+                                                                Hello {format(JSON.stringify(state["username"]))},
+                                                                welcome to Ali-Media-Tools. Thank you for accepting
+                                                                to participate: you have been invited to probe this
+                                                                functional prototype, which consists add multiple
+                                                                fuctions of your favorites social media. On this site,
+                                                                you could post and watch your history post from Facebook,
                                                                 also Instagram, and Twitter at the same point.
                                                             </p>
                                                             <br />
@@ -192,7 +190,7 @@ const Home = () => {
                                                 <Card.Body>
                                                     <Form>
                                                         <Row className="justify-content-md-center">
-                                                            <Col md="6">
+                                                            <Col md={10} sm={12} lg={8}>
                                                                 <Form>
                                                                     <Form.Label><h4>Tell us About your Business:</h4></Form.Label>
                                                                     <Form.Control type="text" onChange={e => setFormData({ ...formData, 'name': e.target.value })}
@@ -234,7 +232,7 @@ const Home = () => {
 
                                 </Card>
                             </Col>
-                            <Col sm={2} />
+                            <Col sm={1} md={2} lg={6} />
                         </Row>
                     </div>
                 </Container >
