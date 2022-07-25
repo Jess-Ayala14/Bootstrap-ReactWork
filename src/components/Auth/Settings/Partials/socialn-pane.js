@@ -10,6 +10,8 @@ import { listBusinesses } from '../../../../graphql/queries';
 import {
     updateBusiness as updateBusinessMutation
 } from '../../../../graphql/mutations';
+import { FacebookProvider, LoginButton } from 'react-facebook';
+
 
 
 
@@ -29,6 +31,14 @@ const Socialn = () => {
     useEffect(() => {
         fetchBusiness();
     }, []);
+
+    const handleResponse = (data) => {
+        console.log(data);
+    }
+
+    const handleError = (error) => {
+        this.setState({ error });
+    }
 
     async function fetchBusiness() {
         const apiData = await API.graphql({ query: listBusinesses });
@@ -52,7 +62,7 @@ const Socialn = () => {
         await Promise.all(BusinessFromAPI.map(async business => {
             return business;
         }))
-        
+
         const updateBusiness = {
             id: id_businesses,
             facebook_API: '{"FB":1}'
@@ -69,7 +79,7 @@ const Socialn = () => {
         await Promise.all(BusinessFromAPI.map(async business => {
             return business;
         }))
-        
+
         const updateBusiness = {
             id: id_businesses,
             facebook_API: ''
@@ -80,7 +90,7 @@ const Socialn = () => {
     }
 
     let [state, setState] = useState(null);
-    
+
     useEffect(() => {
         (async () => {
             try {
@@ -93,7 +103,9 @@ const Socialn = () => {
         })()
     }, [])
 
-    
+
+
+
     if (!state) return <AmplifyLoadingSpinner />
 
     return (
@@ -141,16 +153,16 @@ const Socialn = () => {
                         Close
                     </Button>
 
-                    {business.map(business => business.facebook_API) ==''?
-                    <Button variant="primary" onClick={Pair_FB_API}>
-                        I agree/Authorize
-                    </Button>
-                    :
-                    <Button variant="success" onClick={blank_FB_API}>
-                        Authorized
-                    </Button>
-                    
-}
+                    <FacebookProvider appId="801174264382809">
+                        <LoginButton
+                            className="btn-primary"
+                            scope="email"
+                            onCompleted={handleResponse}
+                            onError={handleError}
+                        >
+                            <span>Login via Facebook</span>
+                        </LoginButton>
+                    </FacebookProvider>
                 </Modal.Footer>
             </Modal>
             <Modal show={show1} onHide={handleClose1}>
