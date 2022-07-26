@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Auth } from 'aws-amplify';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navebar from './components/Navebar';
 import Welcome from './components/Welcome';
 import Signup from './components/Signup';
@@ -29,7 +29,7 @@ class App extends Component {
 
     async componentDidMount() {
         try {
-            const session = await Auth.currentSession();
+            //const session = await Auth.currentSession();
             this.setAuthStatus(true);
             //console.log(session);
             const user = await Auth.currentAuthenticatedUser();

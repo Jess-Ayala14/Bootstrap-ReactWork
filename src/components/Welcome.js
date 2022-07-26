@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
-import Navebar from './Navebar';
 import logo from '../logo.svg';
 
 

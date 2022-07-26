@@ -10,8 +10,6 @@ import { listBusinesses } from '../../../../graphql/queries';
 import {
     updateBusiness as updateBusinessMutation
 } from '../../../../graphql/mutations';
-import { FacebookProvider, LoginButton } from 'react-facebook';
-
 
 
 
@@ -27,18 +25,44 @@ const Socialn = () => {
     const handleClose = () => setShow(false);
     const handleClose1 = () => setShow1(false);
     const handleClose2 = () => setShow2(false);
+    let [state, setState] = useState(null);
+    const [isLoggedin, setIsLoggedin] = useState(false);
+
+    const onLoginClick = () => {
+        window.FB.login();
+    };
+
 
     useEffect(() => {
         fetchBusiness();
+
+        (async () => {
+            try {
+                const response = await Auth.currentAuthenticatedUser()
+                setState(response)
+            } catch (err) {
+                console.error(err)
+                setState(null)
+            }
+        })()
+
+        window.fbAsyncInit = () => {
+            window.FB.init({
+                appId: '801174264382809',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     }, []);
 
-    const handleResponse = (data) => {
-        console.log(data);
-    }
-
-    const handleError = (error) => {
-        this.setState({ error });
-    }
 
     async function fetchBusiness() {
         const apiData = await API.graphql({ query: listBusinesses });
@@ -53,57 +77,6 @@ const Socialn = () => {
         }))
         setBusiness(apiData.data.listBusinesses.items);
     }
-
-
-    async function Pair_FB_API() {
-        const apiData = await API.graphql({ query: listBusinesses });
-        const BusinessFromAPI = apiData.data.listBusinesses.items;
-        const id_businesses = BusinessFromAPI[0]['id']
-        await Promise.all(BusinessFromAPI.map(async business => {
-            return business;
-        }))
-
-        const updateBusiness = {
-            id: id_businesses,
-            facebook_API: '{"FB":1}'
-        }
-
-        await API.graphql({ query: updateBusinessMutation, variables: { input: updateBusiness } });
-        window.location.reload();
-    }
-
-    async function blank_FB_API() {
-        const apiData = await API.graphql({ query: listBusinesses });
-        const BusinessFromAPI = apiData.data.listBusinesses.items;
-        const id_businesses = BusinessFromAPI[0]['id']
-        await Promise.all(BusinessFromAPI.map(async business => {
-            return business;
-        }))
-
-        const updateBusiness = {
-            id: id_businesses,
-            facebook_API: ''
-        }
-
-        await API.graphql({ query: updateBusinessMutation, variables: { input: updateBusiness } });
-        window.location.reload();
-    }
-
-    let [state, setState] = useState(null);
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await Auth.currentAuthenticatedUser()
-                setState(response)
-            } catch (err) {
-                console.error(err)
-                setState(null)
-            }
-        })()
-    }, [])
-
-
 
 
     if (!state) return <AmplifyLoadingSpinner />
@@ -153,16 +126,12 @@ const Socialn = () => {
                         Close
                     </Button>
 
-                    <FacebookProvider appId="801174264382809">
-                        <LoginButton
-                            className="btn-primary"
-                            scope="email"
-                            onCompleted={handleResponse}
-                            onError={handleError}
-                        >
-                            <span>Login via Facebook</span>
-                        </LoginButton>
-                    </FacebookProvider>
+                    <button
+                        className="btn-primary"
+                        onClick={onLoginClick}>
+                        Login with Facebook
+                    </button>
+
                 </Modal.Footer>
             </Modal>
             <Modal show={show1} onHide={handleClose1}>
